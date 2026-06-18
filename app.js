@@ -116,11 +116,33 @@ function roleUrl(role, tripId) {
   return url;
 }
 
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeDisplayName(raw) {
+  const trimmed = String(raw || '').trim().slice(0, 24);
+  const cleaned = trimmed.replace(/[<>"'&]/g, '').replace(/\s+/g, ' ');
+  return cleaned || null;
+}
+
+function sanitizeTripId(id) {
+  if (!id || !/^[A-Z0-9]{3}$/i.test(id)) return null;
+  return id.toUpperCase();
+}
+
 function parseParams() {
   const p = new URLSearchParams(window.location.search);
+  const role = p.get('role');
+  const trip = sanitizeTripId(p.get('trip'));
   return {
-    role: p.get('role'),
-    trip: p.get('trip'),
+    role: role === 'parent' || role === 'wittness' ? role : null,
+    trip,
   };
 }
 
@@ -225,7 +247,7 @@ function renderTripCard(trip, opts = {}) {
 
   let action = '';
   if (trip.canConfirm) {
-    action = `<button type="button" class="btn btn-wittness" data-confirm="${trip.id}">✓ Confirm delivery</button>`;
+    action = `<button type="button" class="btn btn-wittness" data-confirm="${escapeHtml(trip.id)}">✓ Confirm delivery</button>`;
   } else if (trip.status === 'transit') {
     action = `<button type="button" class="btn btn-secondary" disabled>In transit — wait for parent</button>`;
   } else if (trip.status === 'completed') {
@@ -238,15 +260,20 @@ function renderTripCard(trip, opts = {}) {
 
   const hl = opts.highlight ? ' highlight' : '';
 
+  const safeId = escapeHtml(trip.id);
+  const safeBorder = ['border-accent', 'border-red', 'border-amber', ''].includes(trip.border) ? trip.border : '';
+  const safeStatusClass = ['status-transit', 'status-awaiting', 'status-overdue', 'status-escalated', 'status-completed'].includes(trip.statusClass)
+    ? trip.statusClass : 'status-transit';
+
   return `
-    <div class="trip-card ${trip.border}${hl}" data-trip="${trip.id}">
+    <div class="trip-card ${safeBorder}${hl}" data-trip="${safeId}">
       <div class="card-badges">${trip.badges.map(badgeHtml).join('')}</div>
-      <div class="trip-id">Trip #${trip.id}${trip.isYours ? ' · your trip' : ''}</div>
-      <div class="route">${trip.from}<span class="arrow">→</span>${trip.to}</div>
-      <div class="dest-type">${trip.destIcon} ${trip.destLabel}</div>
+      <div class="trip-id">Trip #${safeId}${trip.isYours ? ' · your trip' : ''}</div>
+      <div class="route">${escapeHtml(trip.from)}<span class="arrow">→</span>${escapeHtml(trip.to)}</div>
+      <div class="dest-type">${trip.destIcon} ${escapeHtml(trip.destLabel)}</div>
       <div class="meta-grid">
-        <div class="meta-item"><label>ETA window</label><span>${trip.etaLabel || '—'}</span></div>
-        <div class="meta-item"><label>Status</label><span class="status-pill ${trip.statusClass}">${trip.statusLabel}</span></div>
+        <div class="meta-item"><label>ETA window</label><span>${escapeHtml(trip.etaLabel || '—')}</span></div>
+        <div class="meta-item"><label>Status</label><span class="status-pill ${safeStatusClass}">${escapeHtml(trip.statusLabel)}</span></div>
       </div>
       <div class="meta-item" style="margin-bottom:12px"><label>Witnesses</label><span>${trip.confirms} / ${trip.max}</span></div>
       <div class="confirm-progress"><span>Quorum</span><span>${Math.min(trip.confirms, trip.quorum)} / ${trip.quorum}</span></div>
@@ -383,7 +410,7 @@ function renderParentActive() {
       </div>
       <div class="share-trip-box">
         <strong>Share with a WiTTness:</strong><br/>
-        <span id="wittness-share">${roleUrl('wittness', trip.id)}</span>
+        <span id="wittness-share">${escapeHtml(roleUrl('wittness', trip.id))}</span>
         <button type="button" class="btn btn-secondary btn-sm" id="btn-copy" style="margin-top:8px">Copy WiTTness link</button>
       </div>
       <p style="font-size:0.72rem;color:var(--muted);margin-top:10px;text-align:center">
@@ -395,7 +422,7 @@ function renderParentActive() {
   const etaBox = trip.driveMax ? `
     <div class="share-trip-box" style="margin-bottom:12px">
       <strong>ETA window</strong> ${trip.startedAt ? etaWindowLabel(trip) : `(after start, ~${trip.driveMin}–${trip.driveMax} min)`}<br/>
-      <span style="color:var(--muted);font-size:0.75rem">${trip.trafficLabel || ''} · stale timer uses this window, not a guess</span>
+      <span style="color:var(--muted);font-size:0.75rem">${escapeHtml(trip.trafficLabel || '')} · stale timer uses this window, not a guess</span>
     </div>
   ` : '';
 
@@ -418,9 +445,9 @@ function renderParentActive() {
 
   screen().innerHTML = `
     <div class="view active view-stacked">
-      <div class="screen-header"><h2>Trip #${trip.id}</h2><p>${ui.destIcon} ${ui.destLabel}</p></div>
+      <div class="screen-header"><h2>Trip #${escapeHtml(trip.id)}</h2><p>${ui.destIcon} ${escapeHtml(ui.destLabel)}</p></div>
       <div class="scroll-body">
-        <div class="route" style="margin-bottom:10px">${trip.from}<span class="arrow">→</span>${trip.to}</div>
+        <div class="route" style="margin-bottom:10px">${escapeHtml(trip.from)}<span class="arrow">→</span>${escapeHtml(trip.to)}</div>
         ${etaBox}
         <ul class="step-list compact">${steps}</ul>
         ${extra}
@@ -551,7 +578,7 @@ function renderWittness() {
       </div>
     `;
     $('#btn-w-join').onclick = () => {
-      const name = $('#w-name').value.trim() || 'WiTTness_' + session.slice(-4);
+      const name = sanitizeDisplayName($('#w-name').value) || 'WiTTness_' + session.slice(-4);
       state.store.wittness.name = name;
       saveStore(state.store);
       renderWittness();
@@ -585,9 +612,9 @@ function renderWittness() {
     <div class="view active view-stacked">
       <div class="wittness-header">
         <div class="user">
-          <div class="avatar">${w.name.slice(0, 2).toUpperCase()}</div>
+          <div class="avatar">${escapeHtml(w.name.slice(0, 2).toUpperCase())}</div>
           <div class="user-info">
-            <div class="name">${w.name}</div>
+            <div class="name">${escapeHtml(w.name)}</div>
             <div class="rank">WiTTness · ${w.confirms || 0} confirms</div>
           </div>
         </div>
