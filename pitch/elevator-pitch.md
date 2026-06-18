@@ -32,6 +32,4 @@ Hire car trust broke after recent tragedies. Parents photograph the plate — th
 
 ## Demo
 
-`https://YOUR_USERNAME.github.io/wittness-tt/`
-
-See [`../docs/SOCIAL-SHARE.md`](../docs/SOCIAL-SHARE.md).
+`https://pmaharaj-cc.github.io/wittness-tt/`

@@ -6,7 +6,7 @@ Community witness for child hire-car trips in Trinidad & Tobago. Open source, wi
 
 > **Personal foreword:** [Why this exists. No big talk, just use what we already have.](FOREWORD.md)
 
-**Public launch:** 18 June 2026 on [X](docs/SOCIAL-SHARE.md) · **Built with:** [Grok Build](docs/SOCIAL-SHARE.md) (concept → spec → demo → repo → live site)
+**Public launch:** 18 June 2026 · **Built with:** Grok Build (concept → spec → demo → repo → live site) · **Author:** Pranav Maharaj
 
 ---
 
@@ -87,9 +87,7 @@ Trip witnessed. Protect our kids, one trip at a time.
 | [`demo/`](demo/) | Interactive demo — host as public link |
 | [`mvp/`](mvp/README.md) | Product specification |
 | [`concept/`](concept/01-problem-statement.md) | Long-term vision |
-| [`docs/PUBLISH-ON-GITHUB.md`](docs/PUBLISH-ON-GITHUB.md) | **Put this online — step by step** |
-| [`docs/SECURITY.md`](docs/SECURITY.md) | Privacy and maintainer security |
-| [`docs/SOCIAL-SHARE.md`](docs/SOCIAL-SHARE.md) | Posted X thread + other social copy |
+| [`FOREWORD.md`](FOREWORD.md) | Personal note from the author |
 
 ---
 
@@ -98,7 +96,9 @@ Trip witnessed. Protect our kids, one trip at a time.
 - **Demo:** [https://pmaharaj-cc.github.io/wittness-tt/](https://pmaharaj-cc.github.io/wittness-tt/)
 - **GitHub:** [https://github.com/pmaharaj-cc/wittness-tt](https://github.com/pmaharaj-cc/wittness-tt)
 
-Announcement and share copy: [`docs/SOCIAL-SHARE.md`](docs/SOCIAL-SHARE.md)
+## Privacy (demo)
+
+The live demo stores trip data in your browser only (`localStorage`). There is no backend and no account. Do not enter real child names, phone numbers, or home addresses.
 
 ---
 
@@ -108,7 +108,7 @@ Announcement and share copy: [`docs/SOCIAL-SHARE.md`](docs/SOCIAL-SHARE.md)
 |------|--------|
 | Concept & spec | Written |
 | Interactive demo | Live on GitHub Pages |
-| Public announcement | [X, 18 June 2026](docs/SOCIAL-SHARE.md) |
+| Public launch | 18 June 2026 |
 | Production app | Not built — spec ready |
 
 Someone did something. Here is the proof.
@@ -119,6 +119,3 @@ Someone did something. Here is the proof.
 
 [MIT](LICENSE) — fork and improve freely.
 
----
-
-Local clone folder name does not affect the public repo (see [publish guide](docs/PUBLISH-ON-GITHUB.md)).

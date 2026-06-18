@@ -2,7 +2,6 @@
 
 **Brand:** **WiTTness** · **Protect our kids.**
 
-- Demo: [`../demo/`](../demo/)
-- Social posts: [`../docs/SOCIAL-SHARE.md`](../docs/SOCIAL-SHARE.md)
-- Publish online: [`../docs/PUBLISH-ON-GITHUB.md`](../docs/PUBLISH-ON-GITHUB.md)
+- Demo: [`../demo/`](../demo/) · live at [pmaharaj-cc.github.io/wittness-tt](https://pmaharaj-cc.github.io/wittness-tt/)
+- Foreword: [`../FOREWORD.md`](../FOREWORD.md)
 - Elevator pitch: [`elevator-pitch.md`](elevator-pitch.md)

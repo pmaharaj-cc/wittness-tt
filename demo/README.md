@@ -10,7 +10,7 @@ Double-click `open-demo.bat` or `index.html`.
 
 | Link | Role |
 |------|------|
-| `https://YOU.github.io/wittness-tt/` | Home |
+| `https://pmaharaj-cc.github.io/wittness-tt/` | Home |
 | `...?role=parent` | Parent |
 | `...?role=wittness` | WiTTness |
 | `...?role=wittness&trip=ABC` | WiTTness — specific trip |
@@ -21,4 +21,4 @@ Double-click `open-demo.bat` or `index.html`.
 2. Open WiTTness link in new tab(s) → Confirm until quorum (3)  
 3. Parent tab: Trip complete  
 
-See [`../docs/PUBLISH-ON-GITHUB.md`](../docs/PUBLISH-ON-GITHUB.md) to publish.
+Live at [pmaharaj-cc.github.io/wittness-tt](https://pmaharaj-cc.github.io/wittness-tt/).
