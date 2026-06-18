@@ -564,6 +564,13 @@ function renderWittness() {
   state.store = loadStore();
   const session = genSessionId();
   const w = state.store.wittness;
+  if (w.name) {
+    const clean = sanitizeDisplayName(w.name);
+    if (clean !== w.name) {
+      w.name = clean || 'WiTTness_' + session.slice(-4);
+      saveStore(state.store);
+    }
+  }
   if (!w.name) {
     screen().innerHTML = `
       <div class="view active landing">
