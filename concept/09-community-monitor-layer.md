@@ -1,5 +1,7 @@
 # Community Monitor Layer
 
+> **Public brand (2026):** volunteers are **WiTTnesses**. Older docs may say "Guardian"; that name was retired to avoid conflict with Guardian Media / Guardian Life in T&T.
+
 ## Vision
 
 Mobilize T&T's **chronically online** population — especially older women scrolling TikTok at home — into **Guardians** who witness sanitized child trips remotely, earn points and rank, and optionally build a **remote-work credential**.

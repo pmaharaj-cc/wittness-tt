@@ -1,4 +1,4 @@
-# WiTTness — Elevator Pitch
+# WiTTness. Elevator pitch
 
 **Protect our kids.**
 
@@ -8,15 +8,15 @@
 
 ## 10-second hook
 
-**"Photograph the car doesn't save a child in the car. WiTTness lets parents register a trip in thirty seconds — and volunteers across Trinidad witness that child home safe."**
+**"Photographing the car does not save a child in the car. WiTTness lets parents register a trip in thirty seconds, and volunteers across Trinidad witness that child home safe."**
 
 ---
 
 ## 30-second pitch
 
-Hire car trust broke after recent tragedies. Parents photograph the plate — that helps **after**, not **during**.
+Hire car trust broke after recent tragedies. Parents photograph the plate. That helps **after**, not **during**.
 
-**WiTTness — Protect our kids** — parents tap board and arrive; WiTTnesses at home swipe sanitized trips and confirm delivery. Traffic? **Running late.** Emergency? **999**. We're witnesses, not police.
+**WiTTness. Protect our kids.** Parents tap board and arrive. WiTTnesses at home swipe sanitized trips and confirm delivery. Traffic? **Running late.** Emergency? **999**. We are witnesses, not police.
 
 ---
 
@@ -25,11 +25,11 @@ Hire car trust broke after recent tragedies. Parents photograph the plate — th
 | Old concern | Answer |
 |-------------|--------|
 | "Guardian" | Taken by Guardian Media, Guardian Life |
-| "SafeHire" | Didn't resonate |
-| **WiTTness** | Yours — Witness + TT, volunteer role and brand |
+| "SafeHire" | Did not resonate |
+| **WiTTness** | Yours. Witness + TT, volunteer role and brand |
 
 ---
 
 ## Demo
 
-`https://pmaharaj-cc.github.io/wittness-tt/`
+https://pmaharaj-cc.github.io/wittness-tt/

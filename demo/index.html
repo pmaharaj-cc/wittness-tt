@@ -2,52 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="description" content="WiTTness — Protect our kids. Try a test child hire trip in T&T. Parent or WiTTness role." />
-  <meta property="og:title" content="WiTTness — Protect our kids" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="WiTTness. Protect our kids. Try a test child hire trip in Trinidad and Tobago. Parent or WiTTness role." />
+  <meta name="theme-color" content="#0f1419" />
+  <meta name="author" content="Pranav Maharaj" />
+  <link rel="canonical" href="https://pmaharaj-cc.github.io/wittness-tt/" />
+  <meta property="og:title" content="WiTTness. Protect our kids." />
   <meta property="og:description" content="Community witness for child hire trips. Try one test trip as Parent or WiTTness in 2 minutes." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pmaharaj-cc.github.io/wittness-tt/" />
   <meta name="twitter:card" content="summary" />
-  <title>WiTTness — Protect our kids</title>
+  <title>WiTTness. Protect our kids.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#screen-content">Skip to demo</a>
 
-  <div class="pitch-bar">
+  <header class="pitch-bar">
     <div class="pitch-top">
       <div class="pitch-brand">
+        <p class="eyebrow">Open community demo</p>
         <h1>Wi<span>TT</span>ness</h1>
-        <p class="tagline"><strong>Protect our kids.</strong> · Try one trip</p>
+        <p class="tagline"><strong>Protect our kids.</strong> Try one trip.</p>
       </div>
-      <div class="mode-toggle">
-        <button type="button" id="btn-home" class="active">Home</button>
-        <button type="button" id="btn-parent">Parent</button>
-        <button type="button" id="btn-wittness" class="wittness">WiTTness</button>
-      </div>
+      <nav class="mode-toggle" aria-label="Demo role">
+        <button type="button" id="btn-home" class="active" aria-pressed="true">Home</button>
+        <button type="button" id="btn-parent" aria-pressed="false">Parent</button>
+        <button type="button" id="btn-wittness" class="wittness" aria-pressed="false">WiTTness</button>
+      </nav>
     </div>
     <div class="share-bar">
       <button type="button" id="btn-copy-page">Copy demo link</button>
       <button type="button" id="btn-reset">Reset demo data</button>
     </div>
-  </div>
+  </header>
 
-  <div class="phone-wrap">
+  <main class="phone-wrap" aria-label="WiTTness phone demo">
     <div class="phone-scaler">
-      <span class="demo-label">Live demo</span>
+      <span class="demo-label" aria-hidden="true">Live demo</span>
       <div class="phone-frame">
-      <div class="phone-screen">
-        <div class="notch"><div class="notch-pill"></div></div>
-        <div class="screen-content" id="screen-content"></div>
+        <div class="phone-screen">
+          <div class="notch" aria-hidden="true"><div class="notch-pill"></div></div>
+          <div class="screen-content" id="screen-content" tabindex="-1"></div>
+        </div>
       </div>
     </div>
-    </div>
-  </div>
+  </main>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="app.js"></script>
+  <noscript>
+    <p class="noscript-msg">WiTTness demo requires JavaScript. Enable it to try a test trip.</p>
+  </noscript>
+
+  <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,19 +1,19 @@
-WiTTness — Protect our kids (interactive demo)
-==============================
+WiTTness. Protect our kids. (interactive demo)
+==============================================
 
-NO SERVER (local or deployed)
-  Static files only. On GitHub Pages you get a public LINK, but there is still
-  no backend — trips live in each browser and sync across TABS on that link.
+NO SERVER
+  Static files only. On GitHub Pages you get a public link, but there is still
+  no backend. Trips live in each browser and sync across tabs on that link.
 
 OPEN LOCALLY
   Double-click:  open-demo.bat
   Or:           index.html
 
-SHAREABLE LINKS (after GitHub Pages deploy)
-  Home:     https://YOU.github.io/wittness-tt/
-  Parent:   ...?role=parent
-  WiTTness: ...?role=wittness
-  Trip:     ...?role=wittness&trip=ABC
+LIVE DEMO
+  Home:     https://pmaharaj-cc.github.io/wittness-tt/
+  Parent:   https://pmaharaj-cc.github.io/wittness-tt/?role=parent
+  WiTTness: https://pmaharaj-cc.github.io/wittness-tt/?role=wittness
+  Trip:     https://pmaharaj-cc.github.io/wittness-tt/?role=wittness&trip=ABC
 
 SOLO TEST (one computer)
   1. Parent tab: create trip, START, END
@@ -21,9 +21,9 @@ SOLO TEST (one computer)
   3. Confirm delivery (open 3 tabs total for quorum of 3)
 
 TWO PEOPLE
-  Parent shares WiTTness link after END — friend confirms on their phone.
-  Note: different devices need the SAME deployed URL but won't share trips
-  until a real backend is added. For cross-device today, use one shared laptop
-  or wait for Supabase MVP.
+  Parent shares WiTTness link after END. Friend confirms on their phone.
+  Note: different devices need the same deployed URL but will not share trips
+  until a real backend exists. For cross-device today, use one shared laptop
+  or wait for the production MVP.
 
-See README.md in this folder for deploy steps.
+See README.md in this folder for more detail.

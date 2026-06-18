@@ -2,7 +2,9 @@
 
 ## North star
 
-A **mobile scroll feed** where chronically online older Trinis — especially women at home — **witness child hire trips** by confirming delivery on **sanitized** cards, earning **Guardian Angel** or **True Trini** points, while parents hold start/end confirm and the **panic button**.
+A **mobile scroll feed** where chronically online older Trinis, especially women at home, **witness child hire trips** by confirming delivery on **sanitized** cards, earning **True Trini Points (TTP)** as **WiTTness** volunteers, while parents hold start/end confirm and the **panic button**.
+
+> **Naming:** Public brand is **WiTTness** (not Guardian). See [`06-gamification-terms.md`](06-gamification-terms.md).
 
 ## Read first
 
@@ -35,7 +37,7 @@ A **mobile scroll feed** where chronically online older Trinis — especially wo
 
 ### Beta week
 
-- [ ] 50+ Guardian signups
+- [ ] 50+ WiTTness signups
 - [ ] 10+ parent trips completed end-to-end
 - [ ] At least 1 rural-tagged test trip through quorum
 - [ ] At least 1 school pre-auth test trip (no bell-time tap)

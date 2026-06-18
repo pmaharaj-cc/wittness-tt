@@ -2,7 +2,7 @@
 
 ## One sentence
 
-Parents register child trips and confirm start/end; Guardian volunteers scroll a mobile feed and **confirm delivery**; escalation handles stale trips and panic — with abuse-resistant triage.
+Parents register child trips and confirm start/end; **WiTTness** volunteers scroll a mobile feed and **confirm delivery**; escalation handles stale trips and panic, with abuse-resistant triage.
 
 ## In scope
 
@@ -35,7 +35,7 @@ Parents register child trips and confirm start/end; Guardian volunteers scroll a
 
 ## Beta targets
 
-- **50–200** Guardian volunteers
+- **50–200** WiTTness volunteers
 - **10–20** parent accounts (invite-only)
 - **10–20** schools on allowlist
 

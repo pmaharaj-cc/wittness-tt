@@ -1,5 +1,5 @@
 /**
- * WiTTness — Protect our kids. Interactive open-source demo.
+ * WiTTness. Protect our kids. Interactive open-source demo.
  * No server: trips sync across tabs on the same origin via localStorage.
  * Deploy to GitHub Pages for a public link.
  */
@@ -69,7 +69,7 @@ function etaWindowLabel(trip) {
   const base = trip.startedAt || Date.now();
   const minEnd = base + ((trip.driveMin || 30) + (trip.paddingMin || 0) + (trip.extensionMin || 0)) * 60000;
   const maxEnd = computeEtaEndMs(trip);
-  return `${formatTime(minEnd)} – ${formatTime(maxEnd)}`;
+  return `${formatTime(minEnd)} to ${formatTime(maxEnd)}`;
 }
 
 function isPastEta(trip) {
@@ -148,8 +148,10 @@ function parseParams() {
 
 function setUrlRole(role, tripId) {
   const url = new URL(window.location.href);
-  url.searchParams.set('role', role);
-  if (tripId) url.searchParams.set('trip', tripId);
+  if (role === 'parent' || role === 'wittness') url.searchParams.set('role', role);
+  else url.searchParams.delete('role');
+  const safeTrip = sanitizeTripId(tripId);
+  if (safeTrip) url.searchParams.set('trip', safeTrip);
   else url.searchParams.delete('trip');
   history.replaceState({}, '', url);
 }
@@ -169,10 +171,10 @@ function tripUi(trip) {
   let statusLabel = 'In transit';
   let statusClass = 'status-transit';
   if (trip.status === 'transit' && isPastEta(trip) && !trip.extensionMin) {
-    statusLabel = 'Overdue — check parent';
+    statusLabel = 'Overdue: check parent';
     statusClass = 'status-overdue';
   } else if (trip.status === 'transit' && trip.extensionMin) {
-    statusLabel = 'Extended — parent says OK';
+    statusLabel = 'Extended: parent says OK';
     statusClass = 'status-awaiting';
   }
   const map = {
@@ -249,11 +251,11 @@ function renderTripCard(trip, opts = {}) {
   if (trip.canConfirm) {
     action = `<button type="button" class="btn btn-wittness" data-confirm="${escapeHtml(trip.id)}">✓ Confirm delivery</button>`;
   } else if (trip.status === 'transit') {
-    action = `<button type="button" class="btn btn-secondary" disabled>In transit — wait for parent</button>`;
+    action = `<button type="button" class="btn btn-secondary" disabled>In transit. Wait for parent.</button>`;
   } else if (trip.status === 'completed') {
     action = `<button type="button" class="btn btn-secondary" disabled>✓ Trip fully witnessed</button>`;
   } else if (trip.status === 'escalated') {
-    action = `<button type="button" class="btn btn-secondary" disabled>Witness only — escalated</button>`;
+    action = `<button type="button" class="btn btn-secondary" disabled>Witness only. Escalated.</button>`;
   } else {
     action = `<button type="button" class="btn btn-secondary" disabled>Not ready yet</button>`;
   }
@@ -287,7 +289,7 @@ function renderLanding() {
   screen().innerHTML = `
     <div class="view active landing">
       <h2>Run a test trip</h2>
-      <p>Pick a role and complete one full trip. No account, no server — data stays in your browser and syncs across tabs on this link.</p>
+      <p>Pick a role and complete one full trip. No account, no server. Data stays in your browser and syncs across tabs on this link.</p>
       <button type="button" class="role-btn role-btn-parent" data-go="parent">I'm a Parent</button>
       <button type="button" class="role-btn role-btn-wittness" data-go="wittness">I'm a WiTTness</button>
       <p style="font-size:0.75rem;margin-top:8px">Two people? Parent shares the WiTTness link after starting a trip.</p>
@@ -382,7 +384,6 @@ function createTrip() {
   setUrlRole('parent', id);
   showToast(`Trip #${id} created`);
   renderParentActive();
-  updateShareLinks(id);
 }
 
 function renderParentActive() {
@@ -462,7 +463,7 @@ function renderParentActive() {
     trip.status = 'transit';
     trip.startedAt = Date.now();
     saveStore(state.store);
-    showToast('Trip live — WiTTnesses can see it');
+    showToast('Trip live. WiTTnesses can see it.');
     renderParentActive();
   };
 
@@ -471,9 +472,8 @@ function renderParentActive() {
     trip.status = 'awaiting';
     trip.endedAt = Date.now();
     saveStore(state.store);
-    showToast('Delivery marked — WiTTnesses can confirm');
+    showToast('Delivery marked. WiTTnesses can confirm.');
     renderParentActive();
-    updateShareLinks(trip.id);
   };
 
   const panicBtn = $('#btn-panic');
@@ -486,7 +486,7 @@ function renderParentActive() {
       trip.extensions = (trip.extensions || 0) + 1;
       trip.lastExtendedAt = Date.now();
       saveStore(state.store);
-      showToast(`+${add} min — WiTTnesses notified: still safe`);
+      showToast(`+${add} min. WiTTnesses notified: still safe.`);
       renderParentActive();
     };
   });
@@ -540,8 +540,8 @@ function bindPanic(btn, trip) {
         trip.status = 'escalated';
         trip.escalatedAt = Date.now();
         saveStore(state.store);
-        btn.textContent = 'PANIC sent — call 999';
-        showToast('Escalated — call 999 if immediate danger');
+        btn.textContent = 'PANIC sent. Call 999.';
+        showToast('Escalated. Call 999 if immediate danger.');
         renderParentActive();
       } else btn.textContent = `Hold… ${s}`;
     }, 1000);
@@ -697,14 +697,16 @@ function goWittness(tripId) {
 }
 
 function updateTopNav(role) {
-  $('#btn-parent').classList.toggle('active', role === 'parent');
-  $('#btn-wittness').classList.toggle('active', role === 'wittness');
-  $('#btn-wittness').classList.toggle('wittness', true);
-  $('#btn-home').classList.toggle('active', !role);
-}
-
-function updateShareLinks(_tripId) {
-  /* share link rendered on parent active screen */
+  const home = $('#btn-home');
+  const parent = $('#btn-parent');
+  const wittness = $('#btn-wittness');
+  home.classList.toggle('active', !role);
+  parent.classList.toggle('active', role === 'parent');
+  wittness.classList.toggle('active', role === 'wittness');
+  wittness.classList.toggle('wittness', true);
+  home.setAttribute('aria-pressed', String(!role));
+  parent.setAttribute('aria-pressed', String(role === 'parent'));
+  wittness.setAttribute('aria-pressed', String(role === 'wittness'));
 }
 
 function copyText(text, msg) {

@@ -14,7 +14,7 @@ Sign up (invite) → Create trip (type, zones, ETA)
 
 **School run:** One-time pre-auth → daily auto-enter feed at scheduled time → parent can cancel day-of with one tap.
 
-## Guardian volunteer (watcher)
+## WiTTness volunteer (watcher)
 
 ```
 Sign up (pseudonym) → Onboarding swipe tutorial

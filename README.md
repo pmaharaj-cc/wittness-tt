@@ -63,7 +63,7 @@ Trip witnessed. Protect our kids, one trip at a time.
 | You are… | What you can do today |
 |----------|------------------------|
 | **A parent** | Try the Parent flow in the demo |
-| **Someone at home online** | Try **WiTTness** — scroll, confirm, earn TTP points |
+| **Someone at home online** | Try **WiTTness**: scroll, confirm, earn TTP points |
 | **A developer** | Fork the repo, read the [MVP spec](mvp/README.md) |
 | **An NGO or community group** | Read the [concept docs](concept/01-problem-statement.md) |
 
@@ -84,7 +84,7 @@ Trip witnessed. Protect our kids, one trip at a time.
 
 | Folder | Contents |
 |--------|----------|
-| [`demo/`](demo/) | Interactive demo — host as public link |
+| [`demo/`](demo/) | Interactive demo (also at repo root for GitHub Pages) |
 | [`mvp/`](mvp/README.md) | Product specification |
 | [`concept/`](concept/01-problem-statement.md) | Long-term vision |
 | [`FOREWORD.md`](FOREWORD.md) | Personal note from the author |
@@ -109,7 +109,7 @@ The live demo stores trip data in your browser only (`localStorage`). There is n
 | Concept & spec | Written |
 | Interactive demo | Live on GitHub Pages |
 | Public launch | 18 June 2026 |
-| Production app | Not built — spec ready |
+| Production app | Not built. Spec ready. |
 
 Someone did something. Here is the proof.
 
@@ -117,5 +117,12 @@ Someone did something. Here is the proof.
 
 ## License
 
-[MIT](LICENSE) — fork and improve freely.
+[MIT](LICENSE). Fork and improve freely.
+
+---
+
+## Contributing and security
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [SECURITY.md](SECURITY.md)
 
