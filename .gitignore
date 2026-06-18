@@ -5,3 +5,14 @@ desktop.ini
 .env
 .env.local
 node_modules/
+
+# --- Maintainer-only: never publish to public GitHub ---
+_private/
+local/
+*.local.md
+
+# Legacy paths (removed from public repo — do not recreate under docs/)
+docs/PUBLISH-ON-GITHUB.md
+docs/SOCIAL-SHARE.md
+docs/SECURITY.md
+docs/README.md

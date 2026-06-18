@@ -1,0 +1,21 @@
+# Git hooks (run once per machine)
+
+Enables a pre-push check that refuses to upload maintainer-only files.
+
+From the repo root:
+
+```powershell
+git config core.hooksPath .githooks
+```
+
+On Windows, Git for Windows runs these hooks via sh. If hooks do not run, install [Git for Windows](https://git-scm.com/download/win) and retry.
+
+Blocked from push:
+
+- `docs/PUBLISH-ON-GITHUB.md`
+- `docs/SOCIAL-SHARE.md`
+- `docs/SECURITY.md`
+- `docs/README.md`
+- anything under `_private/` or `local/`
+
+Private notes belong in `_private/` (see `_private/README.txt`).
